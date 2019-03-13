@@ -1,18 +1,15 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.PriorityQueue;
 
 public class PriorityQueueHospital<PatientType extends Comparable<PatientType>> {
 
-	private Queue<PatientType> patients;
+	private PriorityQueue<PatientType> patients;
 	
 	/**
 	 * Initializes the Patient PriorityQueue.
 	 */
 	public PriorityQueueHospital() {
-		patients = new LinkedList<PatientType>();
+		patients = new PriorityQueue<PatientType>();
 	}
 	
 	/**
@@ -32,16 +29,7 @@ public class PriorityQueueHospital<PatientType extends Comparable<PatientType>> 
 	 * @return The patient who would be next treated.
 	 */
 	public PatientType nextPatient() {
-		ArrayList<PatientType> patientList = new ArrayList<PatientType>();
-		for (PatientType patient : patients) {
-			patientList.add(patient);
-		}
-		try {
-			patientList.sort(null);
-			return patientList.get(patientList.size());
-		} catch(ClassCastException e) {
-			return patients.peek();
-		}
+		return patients.peek();
 	}
 
 	/**
@@ -51,16 +39,7 @@ public class PriorityQueueHospital<PatientType extends Comparable<PatientType>> 
 	 * @return The patient receiving treatment.
 	 */
 	public PatientType treatNextPatient() {
-		ArrayList<PatientType> patientList = new ArrayList<PatientType>();
-		for (PatientType patient : patients) {
-			patientList.add(patient);
-		}
-		try {
-			patientList.sort(null);
-			return patientList.remove(patientList.size());
-		} catch(ClassCastException e) {
-			return patients.poll();
-		}
+		return patients.poll();
 	}
 
 	/**
